@@ -2,6 +2,7 @@
   "name": "@friends-library/cover-web-app",
   "version": "1.0.0",
   "private": true,
+  "description": "cover web app for friends library",
   "repository": "github:friends-library-dev/cover-web-app",
   "author": "Jared Henderson <jared@netrivet.com>",
   "main": "./dist/index.js",
