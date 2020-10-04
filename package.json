@@ -15,7 +15,7 @@
     "format": "fldev format",
     "compile": "fldev ts:compile",
     "listen:pdf": "node ./listen/listen-pdf.js",
-    "start": "npm run friends && concurrently npm:listen:pdf npm:serve \"sleep 3 && echo start watcher\"",
+    "start": "npm run friends && concurrently npm:listen:pdf npm:serve \"sleep 3 && node ../../apps/cli/dist/app.js cover:watch\"",
     "serve": "parcel ./src/index.html --port 9999",
     "friends": "fldev tsnode -T --skip-project ./src/scripts/friend-data.ts",
     "build": "npm run friends && parcel build ./src/index.html"
