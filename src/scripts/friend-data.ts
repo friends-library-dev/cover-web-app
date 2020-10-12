@@ -39,7 +39,7 @@ function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents
   const documents = friend.documents.filter((doc) => doc.hasNonDraftEdition);
   return documents.map((document) => {
     const path = `${friend.lang}/${friend.slug}/${document.slug}`;
-    const fullPath = `${ROOT}${path}`;
+    const fullPath = `${ROOT}/${path}`;
     let customCss = null;
     let customHtml = null;
 
