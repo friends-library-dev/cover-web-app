@@ -66,7 +66,9 @@ export default class App extends React.Component<{}, State> {
     try {
       const stored = JSON.parse(sessionStorage.getItem(`state`) || `null`);
       this.setState({ ...this.state, ...stored });
-    } catch {}
+    } catch {
+      // ¯\_(ツ)_/¯
+    }
 
     window.addEventListener(`resize`, () => this.forceUpdate());
     window.addEventListener(`beforeunload`, () => {

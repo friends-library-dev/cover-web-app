@@ -9,8 +9,8 @@
   "scripts": {
     "test": "true",
     "test:watch": "fldev test:watch",
-    "lint": "fldev lint",
-    "lint:fix": "fldev lint:fix",
+    "lint": "fldev lint --ignore-pattern src/friends.js",
+    "lint:fix": "npm run lint -- --fix",
     "ts:check": "fldev ts:check",
     "format": "fldev format",
     "compile": "fldev ts:compile",
