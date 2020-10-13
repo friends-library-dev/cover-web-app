@@ -145,8 +145,6 @@ export default class App extends React.Component<{}, State> {
       blurb: this.getBlurb(friend, doc),
       isbn: ed.isbn,
       showGuides,
-      allowEditingBlurb: true,
-      updateBlurb: this.updateBlurb,
       customCss: this.getCustomCss(),
       customHtml: this.getCustomHtml(),
       fauxVolumeNum: fauxVol,
@@ -219,17 +217,6 @@ export default class App extends React.Component<{}, State> {
       back: `front`,
     };
     this.setState({ perspective: next[perspective] });
-  };
-
-  public updateBlurb: (blurb: string) => void = (blurb) => {
-    const key = this.coverKey();
-    const { customBlurbs } = this.state;
-    this.setState({
-      customBlurbs: {
-        ...customBlurbs,
-        [key]: blurb,
-      },
-    });
   };
 
   public changeCover(dir: Direction): void {
