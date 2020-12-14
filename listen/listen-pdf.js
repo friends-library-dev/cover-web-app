@@ -17,7 +17,7 @@ http
       return;
     }
 
-    let chunks = [];
+    const chunks = [];
     req.on(`data`, (chunk) => chunks.push(chunk));
     req.on(`end`, () => {
       const json = JSON.parse(chunks.join(``));

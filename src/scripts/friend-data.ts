@@ -4,7 +4,8 @@ import { resolve } from 'path';
 import { red } from 'x-chalk';
 import exec from 'x-exec';
 import env from '@friends-library/env';
-import { allFriends, Friend } from '@friends-library/friends';
+import { Friend } from '@friends-library/friends';
+import { allFriends } from '@friends-library/friends/query';
 import { fetchSingleton, DocumentMeta } from '@friends-library/document-meta';
 import { FriendData } from '../types';
 
