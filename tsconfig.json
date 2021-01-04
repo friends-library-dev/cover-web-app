@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "skipLibCheck": true,
+    "noUncheckedIndexedAccess": false,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,

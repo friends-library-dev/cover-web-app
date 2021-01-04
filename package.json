@@ -24,7 +24,7 @@
     "@friends-library/cover-component": "^3.1.1",
     "@friends-library/document-meta": "^2.2.0",
     "@friends-library/env": "^1.2.0",
-    "@friends-library/friends": "^3.2.0",
+    "@friends-library/friends": "^3.7.0",
     "@friends-library/types": "^3.0.0",
     "@material-ui/core": "^4.0.0-beta.0",
     "@material-ui/icons": "^4.0.0-beta.0",
@@ -40,7 +40,7 @@
     "react-keyboard-event-handler": "^1.4.1"
   },
   "devDependencies": {
-    "@friends-library/dev": "^4.1.15",
+    "@friends-library/dev": "^4.1.16",
     "@types/classnames": "^2.2.10",
     "@types/lodash": "^4.14.161",
     "@types/react": "16.9.11",
