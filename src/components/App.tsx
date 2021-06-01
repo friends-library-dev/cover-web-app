@@ -36,14 +36,13 @@ interface State {
   bookSize: BookSize;
   fauxVol?: 1 | 2;
   perspective: Perspective;
-  capturing: 'ebook' | 'audio' | null;
+  capturing: 'ebook' | 'audio' | `threeD` | null;
   customBlurbs: Record<string, string>;
   customHtml: Record<string, string>;
   customCss: Record<string, string>;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export default class App extends React.Component<{}, State> {
+export default class App extends React.Component<Record<string, never>, State> {
   public state: State = {
     friendIndex: 0,
     docIndex: 0,
@@ -79,6 +78,8 @@ export default class App extends React.Component<{}, State> {
     const capturing = query.get(`capture`);
     if (capturing === `ebook` || capturing === `audio`) {
       this.setState({ capturing, mode: `ebook`, scale: `1` });
+    } else if (capturing === `threeD`) {
+      this.setState({ capturing, mode: `3d`, scale: `1`, bookSize: `m` });
     } else {
       this.setState({ capturing: null });
     }
@@ -87,9 +88,7 @@ export default class App extends React.Component<{}, State> {
     }
   }
 
-  protected selectCover(
-    id: string,
-  ): {
+  protected selectCover(id: string): {
     friendIndex: number;
     docIndex: number;
     edIndex: number;
@@ -132,7 +131,8 @@ export default class App extends React.Component<{}, State> {
   }
 
   protected coverProps(): CoverProps | undefined {
-    const { showGuides, mode, bookSize, scale, showCode, fauxVol } = this.state;
+    const { showGuides, mode, bookSize, scale, showCode, fauxVol, capturing } =
+      this.state;
     const { friend, doc, ed } = this.selectedEntities();
     if (!friend || !doc || !ed) return;
     const size = mode === `ebook` ? `xl` : bookSize === `actual` ? ed.size : bookSize;
@@ -142,7 +142,7 @@ export default class App extends React.Component<{}, State> {
       title: doc.title,
       isCompilation: doc.isCompilation,
       size: mode === `ebook` ? `xl` : bookSize === `actual` ? ed.size : bookSize,
-      pages: ed.pages,
+      pages: Math.max(ed.pages, capturing === `threeD` ? 75 : 0),
       edition: ed.type,
       blurb: this.getBlurb(friend, doc),
       isbn: ed.isbn,
@@ -151,6 +151,7 @@ export default class App extends React.Component<{}, State> {
       customHtml: this.getCustomHtml(),
       fauxVolumeNum: fauxVol,
       ...scalerAndScope(size, ed.pages, scale, mode, showCode),
+      ...(capturing === `threeD` ? { scaler: 2, scope: `2x` } : {}),
     };
   }
 
@@ -352,12 +353,14 @@ export default class App extends React.Component<{}, State> {
       bookSize,
     } = this.state;
     const coverProps = this.coverProps();
+
     return (
       <div
         className={cx(`App`, `web`, {
           [`trim--${coverProps ? coverProps.size : `m`}`]: true,
           'capturing-screenshot': capturing !== null,
           'capturing-audio': capturing === `audio`,
+          'capturing-3d': capturing === `threeD`,
           'has-custom-code': this.getCustomCss() || this.getCustomCss(),
         })}
       >

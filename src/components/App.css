@@ -67,3 +67,23 @@ body {
 .capturing-audio .author {
   opacity: 0;
 }
+
+.capturing-3d {
+  background: #efefef;
+}
+
+.capturing-3d .Cover {
+  /* help center cover, account for perspective shift */
+  margin-left: 65px;
+}
+
+.capturing-3d .spine__title {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.capturing-3d .cover-wrap {
+  transform: none;
+  transform-origin: initial;
+  width: 100vw;
+}
