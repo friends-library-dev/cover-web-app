@@ -43,7 +43,7 @@ interface State {
 }
 
 export default class App extends React.Component<Record<string, never>, State> {
-  public state: State = {
+  public override state: State = {
     friendIndex: 0,
     docIndex: 0,
     edIndex: 0,
@@ -61,7 +61,7 @@ export default class App extends React.Component<Record<string, never>, State> {
     customHtml: {},
   };
 
-  public componentDidMount(): void {
+  public override componentDidMount(): void {
     try {
       const stored = JSON.parse(sessionStorage.getItem(`state`) || `null`);
       this.setState({ ...this.state, ...stored });
@@ -337,7 +337,7 @@ export default class App extends React.Component<Record<string, never>, State> {
     });
   }
 
-  public render(): JSX.Element {
+  public override render(): JSX.Element {
     const {
       friendIndex,
       docIndex,

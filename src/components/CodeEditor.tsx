@@ -26,13 +26,13 @@ export default class CodeEditor extends React.Component<Props> {
   private htmlEditor = React.createRef<AceEditor>();
   private cssEditor = React.createRef<AceEditor>();
 
-  public componentDidMount(): void {
+  public override componentDidMount(): void {
     const editor = (this.htmlEditor.current as any).editor;
     editor.setOption(`wrap`, `free`);
     editor.setOption(`enableEmmet`, true);
   }
 
-  public render(): JSX.Element {
+  public override render(): JSX.Element {
     const { css, html, updateHtml, updateCss } = this.props;
     return (
       <div className="code-editor">
