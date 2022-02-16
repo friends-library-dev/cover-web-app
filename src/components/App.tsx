@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import KeyEvent from 'react-keyboard-event-handler';
-import { CoverProps, Css, Html } from '@friends-library/types';
+import { CoverProps } from '@friends-library/types';
 import FormControl from '@material-ui/core/FormControl';
 import {
   Front,
@@ -94,11 +94,11 @@ export default class App extends React.Component<Record<string, never>, State> {
     edIndex: number;
   } {
     for (let friendIndex = 0; friendIndex < friendData.length; friendIndex++) {
-      const friend = friendData[friendIndex];
+      const friend = friendData[friendIndex]!;
       for (let docIndex = 0; docIndex < friend.documents.length; docIndex++) {
-        const doc = friend.documents[docIndex];
+        const doc = friend.documents[docIndex]!;
         for (let edIndex = 0; edIndex < doc.editions.length; edIndex++) {
-          const ed = doc.editions[edIndex];
+          const ed = doc.editions[edIndex]!;
           if (ed.id === id) {
             return {
               friendIndex,
@@ -158,29 +158,29 @@ export default class App extends React.Component<Record<string, never>, State> {
   protected getBlurb(friend: FriendData, doc: DocumentData): string {
     const key = this.coverKey();
     const { customBlurbs } = this.state;
-    if (customBlurbs[key] !== undefined) return customBlurbs[key];
+    if (customBlurbs[key] !== undefined) return customBlurbs[key] ?? `TODO`;
     return doc.description || friend.description || `TODO`;
   }
 
-  protected getCustomCss(): Css {
+  protected getCustomCss(): string {
     const key = this.documentKey();
     if (this.state.customCss[key] !== undefined) {
-      return this.state.customCss[key];
+      return this.state.customCss[key] ?? ``;
     }
     const { doc } = this.selectedEntities();
     return doc && doc.customCss ? doc.customCss : ``;
   }
 
-  protected getCustomHtml(): Html {
+  protected getCustomHtml(): string {
     const key = this.documentKey();
     if (this.state.customHtml[key] !== undefined) {
-      return this.state.customHtml[key];
+      return this.state.customHtml[key] ?? ``;
     }
     const { doc } = this.selectedEntities();
     return doc && doc.customHtml ? doc.customHtml : ``;
   }
 
-  protected updateCustomCss(css: Css): void {
+  protected updateCustomCss(css: string): void {
     this.setState({
       customCss: {
         ...this.state.customCss,
@@ -189,7 +189,7 @@ export default class App extends React.Component<Record<string, never>, State> {
     });
   }
 
-  protected updateCustomHtml(html: Html): void {
+  protected updateCustomHtml(html: string): void {
     this.setState({
       customHtml: {
         ...this.state.customHtml,
@@ -260,20 +260,20 @@ export default class App extends React.Component<Record<string, never>, State> {
     } else if (docIndex > 0) {
       this.setState({
         docIndex: docIndex - 1,
-        edIndex: friend.documents[docIndex - 1].editions.length - 1,
+        edIndex: friend.documents[docIndex - 1]!.editions.length - 1,
       });
     } else if (friendIndex > 0) {
-      const newDocs = friendData[friendIndex - 1].documents;
+      const newDocs = friendData[friendIndex - 1]!.documents;
       this.setState({
         friendIndex: friendIndex - 1,
         docIndex: newDocs.length - 1,
-        edIndex: newDocs[newDocs.length - 1].editions.length - 1,
+        edIndex: newDocs[newDocs.length - 1]!.editions.length - 1,
       });
     } else {
       const lastFriendIndex = friendData.length - 1;
-      const lastFriendDocs = friendData[lastFriendIndex].documents;
+      const lastFriendDocs = friendData[lastFriendIndex]!.documents;
       const lastDocIndex = lastFriendDocs.length - 1;
-      const lastDoc = lastFriendDocs[lastDocIndex];
+      const lastDoc = lastFriendDocs[lastDocIndex]!;
       this.setState({
         friendIndex: lastFriendIndex,
         docIndex: lastDocIndex,

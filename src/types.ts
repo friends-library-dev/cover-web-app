@@ -1,34 +1,25 @@
-import {
-  Lang,
-  Name,
-  PrintSize,
-  Description,
-  EditionType,
-  ISBN,
-  Html,
-  Css,
-} from '@friends-library/types';
+import { Lang, PrintSize, EditionType } from '@friends-library/types';
 
 export interface EditionData {
   id: string;
   type: EditionType;
   pages: number;
   size: PrintSize;
-  isbn: ISBN;
+  isbn: string;
 }
 
 export interface DocumentData {
   lang: Lang;
   title: string;
   isCompilation: boolean;
-  description: Description;
+  description: string;
   editions: EditionData[];
-  customHtml: Html | null;
-  customCss: Css | null;
+  customHtml: string | null;
+  customCss: string | null;
 }
 
 export interface FriendData {
-  name: Name;
-  description: Description;
+  name: string;
+  description: string;
   documents: DocumentData[];
 }

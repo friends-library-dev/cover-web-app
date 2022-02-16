@@ -19,8 +19,5 @@ jobs:
         run: npm run format -- --check
       - name: build
         env:
-          DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
-          DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
-          DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
-          DOCS_REPOS_ROOT: ${{ github.workspace }}
+          DOCS_REPOS_ROOT: /
         run: npm run build

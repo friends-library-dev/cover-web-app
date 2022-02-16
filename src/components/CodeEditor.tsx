@@ -1,6 +1,5 @@
 import React from 'react';
 import AceEditor from 'react-ace';
-import { Css, Html } from '@friends-library/types';
 import './CodeEditor.css';
 import 'brace/theme/pastel_on_dark';
 import 'brace/mode/html';
@@ -16,10 +15,10 @@ const options = {
 };
 
 interface Props {
-  css: Css;
-  html: Html;
-  updateCss: (css: Css) => void;
-  updateHtml: (html: Html) => void;
+  css: string;
+  html: string;
+  updateCss: (css: string) => void;
+  updateHtml: (html: string) => void;
 }
 
 export default class CodeEditor extends React.Component<Props> {

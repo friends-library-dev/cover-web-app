@@ -64,18 +64,9 @@ function fitScaler(
 }
 
 export function documents(friendIndex: number): DocumentData[] {
-  if (friendData[friendIndex]) {
-    return friendData[friendIndex].documents;
-  }
-  return [];
+  return friendData[friendIndex]?.documents ?? [];
 }
 
 export function editions(friendIndex: number, docIndex: number): EditionData[] {
-  if (!friendData[friendIndex]) {
-    return [];
-  }
-  if (!friendData[friendIndex].documents[docIndex]) {
-    return [];
-  }
-  return friendData[friendIndex].documents[docIndex].editions;
+  return friendData[friendIndex]?.documents[docIndex]?.editions ?? [];
 }
