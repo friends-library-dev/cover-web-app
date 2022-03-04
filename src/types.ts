@@ -2,6 +2,7 @@ import { Lang, PrintSize, EditionType } from '@friends-library/types';
 
 export interface EditionData {
   id: string;
+  path: string;
   type: EditionType;
   pages: number;
   size: PrintSize;

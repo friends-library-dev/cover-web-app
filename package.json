@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@friends-library/cover-component": "^3.1.6",
-    "@friends-library/db": "^3.0.5",
+    "@friends-library/db": "^3.1.0",
     "@friends-library/env": "^1.4.0",
     "@friends-library/types": "^7.0.0",
     "@material-ui/core": "^4.0.0-beta.0",

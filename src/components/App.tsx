@@ -83,12 +83,12 @@ export default class App extends React.Component<Record<string, never>, State> {
     } else {
       this.setState({ capturing: null });
     }
-    if (query.has(`id`)) {
-      this.setState(this.selectCover(query.get(`id`) || ``));
+    if (query.has(`path`)) {
+      this.setState(this.selectCover(query.get(`path`) || ``));
     }
   }
 
-  protected selectCover(id: string): {
+  protected selectCover(path: string): {
     friendIndex: number;
     docIndex: number;
     edIndex: number;
@@ -99,7 +99,7 @@ export default class App extends React.Component<Record<string, never>, State> {
         const doc = friend.documents[docIndex]!;
         for (let edIndex = 0; edIndex < doc.editions.length; edIndex++) {
           const ed = doc.editions[edIndex]!;
-          if (ed.id === id) {
+          if (ed.path === path) {
             return {
               friendIndex,
               docIndex,
@@ -109,7 +109,7 @@ export default class App extends React.Component<Record<string, never>, State> {
         }
       }
     }
-    throw new Error(`Cover with ${id} not found`);
+    throw new Error(`Cover with path: ${path} not found`);
   }
 
   protected selectedEntities(): {

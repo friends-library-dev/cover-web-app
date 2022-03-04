@@ -28,10 +28,10 @@ async function main(): Promise<void> {
           isCompilation: friend.isCompilations,
           editions: doc.editions.map((ed) => ({
             id: ed.id,
+            path: ed.path,
             type: ed.type,
             pages: ed.impression?.paperbackVolumes[0] ?? 222,
-            size: (ed.impression?.paperbackSize.replace(/xl.*/, `xl`) ??
-              `m`) as PrintSize,
+            size: (ed.impression?.paperbackSize ?? `m`) as PrintSize,
             isbn: ed.isbn?.code ?? ``,
           })),
           ...getCustomCode(doc.directoryPath),
@@ -76,6 +76,7 @@ const QUERY = gql`
         directoryPath
         editions {
           id
+          path: directoryPath
           type
           isbn {
             code

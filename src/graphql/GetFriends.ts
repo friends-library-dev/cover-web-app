@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { Lang, EditionType, PrintSizeVariant } from './globalTypes';
+import { Lang, EditionType, PrintSize } from './globalTypes';
 
 // ====================================================
 // GraphQL query operation: GetFriends
@@ -17,12 +17,13 @@ export interface GetFriends_friends_documents_editions_isbn {
 export interface GetFriends_friends_documents_editions_impression {
   __typename: 'EditionImpression';
   paperbackVolumes: number[];
-  paperbackSize: PrintSizeVariant;
+  paperbackSize: PrintSize;
 }
 
 export interface GetFriends_friends_documents_editions {
   __typename: 'Edition';
   id: string;
+  path: string;
   type: EditionType;
   isbn: GetFriends_friends_documents_editions_isbn | null;
   impression: GetFriends_friends_documents_editions_impression | null;

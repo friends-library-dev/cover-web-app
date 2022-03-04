@@ -18,11 +18,10 @@ export enum Lang {
   es = 'es',
 }
 
-export enum PrintSizeVariant {
+export enum PrintSize {
   m = 'm',
   s = 's',
   xl = 'xl',
-  xlCondensed = 'xlCondensed',
 }
 
 //==============================================================
